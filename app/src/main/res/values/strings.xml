@@ -2,6 +2,6 @@
     <string name="app_name">MyClock</string>
     <string name="title">时钟</string>
     <string name="clockPageTitle">时钟</string>
-    <string name="countPageTitle">计时器</string>
+    <string name="countPageTitle">秒表</string>
     <string name="alertPageTitle">闹钟</string>
 </resources>

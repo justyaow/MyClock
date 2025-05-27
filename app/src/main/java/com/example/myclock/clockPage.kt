@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat
 
 class clockPage : Fragment() {
     private lateinit var timelabel: TextView
+    private lateinit var timeThread: Thread
+    private var ok: Boolean = true
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +24,7 @@ class clockPage : Fragment() {
         return view
     }
     private fun initThread(): Unit {
-        Thread {
+        timeThread = Thread {
             try {
                 while (true) {
                     updateTime()
@@ -31,7 +33,8 @@ class clockPage : Fragment() {
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
-        }.start()
+        }
+        timeThread.start()
     }
 
     private fun updateTime(): Unit {
@@ -44,5 +47,11 @@ class clockPage : Fragment() {
         val currentTime = Calendar.getInstance().time
         val timeResult = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         timelabel.text = timeResult.format(currentTime)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ok = false
+        timeThread.interrupt()
     }
 }
