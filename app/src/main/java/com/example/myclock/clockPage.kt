@@ -25,8 +25,8 @@ class clockPage : Fragment() {
         Thread {
             try {
                 while (true) {
-                    Thread.sleep(1000)
                     updateTime()
+                    Thread.sleep(1000)
                 }
             } catch (e: InterruptedException) {
                 e.printStackTrace()
